@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const fs = require("fs");
+const path = require("path");
+//确认是否是正确路径
+// fs.exists("./3.json",function(e){
+//     console.log(e,'-*----')
+// 	// 回调,e是exists的返回值，布尔值
+// })
+/**
+ * 查询目标 目录下所有文件或文件夹名为 filename 的文件路径
+ * @param {String} dir  查询目录
+ * @param {String} filename  查询文件的名称
+ * @returns {Array} 所有满足条件的文件路径
+ */
+function getAllDirbyFilename(dir, filename) {
+  let dirPath = path.resolve(__dirname, dir);
+  let files = fs.readdirSync(dirPath); // 该文件夹下的所有文件名称 (文件夹 + 文件)
+  console.log(dirPath, files);
+
+  let resultArr = [];
+
+  files.forEach((file) => {
+    let filePath = dir + "/" + file; // 当前文件 | 文件夹的路径
+    // 满足查询条件文件
+
+    // if (file === filename) {
+      // console.log(file, filePath, file === filename);
+      return resultArr.push(filePath);
+    // }
+
+    // 继续深搜文件夹
+    if (fs.statSync(filePath).isDirectory()) {
+      resultArr.push(...getAllDirbyFilename(filePath, filename));
+    }
+  });
+
+  return resultArr;
+}
+// 
+// let fileArr = getAllDirbyFilename('./text', 'config.ini');
+let fileArr = getAllDirbyFilename("../xt/src/i18n/modules", "ar.json");
+
+let fileArr2 = getAllDirbyFilename("../standby/src/i18n/modules", "ar.json");
+fileArr.map((ev,a)=>{
+// if(!a){
+  readrd(fileArr2[a],ev);
+// }
+})
+console.log(fileArr,fileArr2, "fileArr");
+
+
+
+// 文件内容
+// var iconv = require("iconv-lite");
+
+function readrd(url, url2) {
+  let data2 = {};
+  fs.readFile(url2, "UTF-8", function (err, dataStr) {
+    if (err) {
+      return console.log("失败", err.message);
+    }
+    data2 = JSON.parse(dataStr);
+  });
+  // console.log(url);
+  fs.readFile(url, "UTF-8", function (err, dataStr) {
+    if (err) {
+      return console.log("失败", err.message);
+    }
+    let obj = JSON.parse(dataStr);
+    // console.log(data2,'data2')
+
+    // console.log('成功',obj)
+
+    for (let item in data2) {
+      let faitem = data2[item];
+      if(item == 'agreement'&&!obj[item]){
+        console.log(item, "item",url);
+        obj[item] = faitem;
+      }
+      // for(let key in faitem){
+      //     console.log(key , faitem[key])
+      // }
+    }
+    // console.log(obj)
+    fs.writeFile(url, JSON.stringify(obj), function (err) {
+      console.log(err);
+    });
+  });
+}
+
+// fs.writeFile('./2.json','666',function(err){
+//     console.log(err)
+// })
+
+// var fileStr = fs.readFileSync('11.txt',{encoding:'binary'});
+// var buf = new Buffer.from(fileStr,'binary');
+// var data = iconv.decode(buf,'GBK');
+// console.log(data);
+// console.log("结束end");
+
+    </script>
+</body>
+</html>

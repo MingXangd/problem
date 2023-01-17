@@ -1,0 +1,14 @@
+// readrd("../qe/src/pages/whitePaper.vue", "../xt/src/pages/whitePaper.vue");  //qe-org
+// readrd("../standby/src/pages/whitePaper.vue", "../xt/src/pages/whitePaper.vue");
+//  readrd("../bitmelcd/src/pages/whitePaper.vue", "../xt/src/pages/whitePaper.vue");
+//  readrd("../okex/src/pages/whitePaper.vue", "../xt/src/pages/whitePaper.vue");
+//  readrd("../uk/src/pages/whitePaper.vue", "../xt/src/pages/whitePaper.vue");  
+//  readrd("../Franziska/src/pages/whitePaper.vue", "../xt/src/pages/whitePaper.vue");  
+//  readrd("../mtfexg-pc/src/pages/whitePaper.vue", "../xt/src/pages/whitePaper.vue");  
+//  readrd("../idscapt/src/pages/whitePaper.vue", "../xt/src/pages/whitePaper.vue");  
+//  readrd("../connectfsi/src/pages/whitePaper.vue", "../xt/src/pages/whitePaper.vue");  
+//  readrd("../bitfinexen/src/pages/whitePaper.vue", "../xt/src/pages/whitePaper.vue");  
+//  readrd("../ezifund/src/pages/whitePaper.vue", "../xt/src/pages/whitePaper.vue");  
+//  readrd("../gefoce/src/pages/whitePaper.vue", "../xt/src/pages/whitePaper.vue");  
+//  readrd("../block/src/pages/whitePaper.vue", "../xt/src/pages/whitePaper.vue");  
+//  readrd("../parachain/src/pages/whitePaper.vue", "../xt/src/pages/whitePaper.vue");  
