@@ -1,0 +1,70 @@
+// @import url('../mycss/mecss.less')
+
+.black{
+  .common(blue)
+}
+//
+// 1 black 和 green 等class名字应用在页面上 的根标签
+// 2 然后执行对应页面的.less 文件里的方法 动态赋予预先规定好的其他class 的样式
+//   设置class = black 其他的样式就是black  下面调试、
+
+.green{
+  .common(yellow)
+}
+
+
+.common(@col) {
+  @backcol: @col;
+  @size: 1rem;
+  @white: #fff;
+  /* 一键换皮肤
+  1 需要 把页面里的 less 代码抽离到独立的 less文件中
+  2 声明 切换样式的less 文件叫 mecss.less
+  3 在mecss.less 声明多个主题颜色 调用对应的方法 传入主题需要的单个/多个参数样式
+  4 注意 mecss.less 里调用的方法都是在各各页面独立 less文件中声明
+  5 只需在js 当中 切换body /根标签的class名 即可实现切换主题功能*/
+  body, html {
+    margin: 0;
+  }
+
+  .imgh {
+    width: 2rem;
+    height: 2rem;
+  }
+  .me {
+    border: slategrey 1px solid;
+    margin: 10px 0;
+  }
+  .me > div {
+    display: inline-block;
+  }
+
+  .mej {
+    width: 55%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .cman {
+    background-color: @backcol;
+    color: #ffffff;
+  }
+
+  .tuimg {
+    width: 1.5rem;
+    height: 1.5rem;
+    display: inline-block;
+  }
+
+  .tuimg > img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .spaa {
+    font-size: 0.6rem;
+    color: slategrey;
+  }
+
+}

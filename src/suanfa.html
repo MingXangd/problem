@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			singleNumber([2, 2, 1])
+
+			function singleNumber(nums) {
+				let obj = {};
+				let a = '';
+				nums.map(ev => {
+					obj[ev] = obj[ev] >= 0 ? ++obj[ev] : 0
+				})
+				console.log(obj)
+				for (let key in obj) {
+					if (obj[key] == 0) {
+						a = key
+					}
+				}
+				// return a
+				console.log(a)
+			};
+			
+			/**
+			 * @param {number[]} nums
+			 * @return {number}
+			 */
+			majorityElement([2, 2, 1])
+			function majorityElement(nums) {
+			    let obj={};
+			    let str = '';
+			    nums.map(ev=>{
+			        obj[ev]= obj[ev]?++obj[ev]:1;
+			    })
+				console.log(obj)
+			    for(let key in obj){
+			        if(obj[key]%2==0){
+			            str = key
+			        }
+			    }
+				console.log(str)
+			    // return str
+			};
+			merge([1,2,3,0,0,0],3,[2,5,6],3)
+			 function merge(nums1, m, nums2, n) {
+			    let arr1 = nums1.splice(0,m);
+			    let arr2 = nums2.splice(0,n);
+				console.log(arr1,arr2)
+			    let arr3 = arr1.concat(arr2);
+			    for(let a =0; a<arr3.length-1; a++){
+			        for(let b =0; b<arr3.length-a; b++){
+			        if(arr3[b]>arr3[b+1]){
+			            let num = arr3[b];
+			            arr3[b] = arr3[b+1];
+			            arr3[b+1] = num 
+			        }
+			     }
+			    }
+				console.log(arr3,'arr3')
+			    return arr3;
+			};
+		</script>
+	</body>
+</html>
