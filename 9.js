@@ -27,5 +27,5 @@ function readrd(url, url2) {
 // readrd("../mathews/src/", "../qatar/src/views/securitycenter/capitalpasswordmodify.vue");
 // readrd("../radian/src/", "../qatar/src/views/securitycenter/capitalpasswordmodify.vue");
 // readrd("../bitforex-copy/src/", "../qatar/src/views/securitycenter/capitalpasswordmodify.vue");
-// readrd("../standby-foreign/src/", "../qatar/src/views/securitycenter/capitalpasswordmodify.vue");
+readrd("../standby-foreign/src/", "../qatar/src/views/securitycenter/capitalpasswordmodify.vue");
 
