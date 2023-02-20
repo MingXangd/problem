@@ -1,41 +1,38 @@
 const fs = require("fs");
 const path = require("path");
 
-// 文件内容
-// var iconv = require("iconv-lite");
-function readrd(url, url2) {
-  fs.readFile(url, "UTF-8", function (err, dataStr) {
-    if (err) {
-      return console.log("失败", err.message);
-    }
-    let obj = dataStr.replace(
-      "<title>",
-      '<link  href="https://unpkg.com/pdfh5@1.4.2/css/pdfh5.css"><title>'
-    );
-    obj = obj.replace(
-      "</html>",
-      '<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script><script src="https://unpkg.com/pdfh5@1.4.2/js/pdf.js"></script><script src="https://unpkg.com/pdfh5@1.4.2/js/pdfh5.js"></script><script src="https://unpkg.com/pdfh5@1.4.2/js/pdf.worker.js"></script></html>'
-    );
-    fs.writeFile(url, obj, function (err) {
-      console.log("成功", url);
-    });
-  });
+function read(url) {
+    let thisstr = []
+
+    fs.readFile(url, "UTF-8", function (err, data) {
+        if (err) {
+            console.log('error', err.message);
+            return
+        }
+        // 替换 '<h1>ARION</h1>'.replace("<")
+        // 去内容 拆分  '<h1>ARION</h1>'.match(/\<.*?>/g)
+        // let data
+        // console.log(data.match(/\>.*?</g));
+        data.match(/\>.*?</g).map(ev=>{
+            if (ev.length > 2 && ev.indexOf('(')== -1){
+                thisstr.push(ev.substr(1, ev.length - 2).trim())
+            }
+        })
+        console.log(thisstr);
+    })
+
+    fs.readFile('../dongkwang/src/locales/en.json','utf-8',function(err,data) {
+        if (err) {
+            console.log('error', err.message);
+            return
+        }
+        // console.log(data, Object.getOwnPropertyNames({ "name": "dasd", "age": 18 }).length);
+        // console.log(data, Object.getOwnPropertyNames(data).length);
+        thisstr.map(ev=>{
+            
+        })
+    })
 }
-
-// readrd("../venlyglobal/index.html", "../xt/index.html");
-// readrd("../qe/index.html", "../xt/index.html"); //qe-org
-// readrd("../standby/index.html", "../xt/index.html");
-// readrd("../bitmelcd/index.html", "../xt/index.html");
-// readrd("../okex/index.html", "../xt/index.html");
-// readrd("../uk/index.html", "../xt/index.html");
-// readrd("../Franziska/index.html", "../xt/index.html");
-// readrd("../mtfexg-pc/index.html", "../xt/index.html");
-// readrd("../idscapt/index.html", "../xt/index.html");
-// readrd("../connectfsi/index.html", "../xt/index.html");
-// readrd("../bitfinexen/index.html", "../xt/index.html");
-// readrd("../ezifund/index.html", "../xt/index.html");
-// readrd("../gefoce/index.html", "../xt/index.html");
-// readrd("../block/index.html", "../xt/index.html");
-// readrd("../parachain/index.html", "../xt/index.html");
-
-//  readrd("../xt/index.html", "../xt/index.html");
+// read('./views/index.vue')
+// read('../dongkwang/src/App.vue')
+read('../dongkwang/src/views/index.vue')
