@@ -36,16 +36,14 @@ function readrd(url, url1 = '../standby-foreign/src/') {
             console.log('成功', url)
         });
     });
-    if (fs.existsSync(url + 'pages/help')) {
-    console.log('Folder exists');
-} else {
-    console.log('Folder does not exist');
+    if (!fs.existsSync(url + 'pages/help')) {
+        console.log('Folder does not exist');
         //新建文件夹
         fs.mkdir(url + 'pages/help', (err) => {
             if (err) throw err; // 如果出现错误就抛出错误信息
             console.log('文件夹创建成功');
         })
-}
+    }
 
     //帮助中心主页 (覆盖)
     fs.readFile(url1 + 'pages/help/index.vue', "UTF-8", function (err, data) {
@@ -73,6 +71,7 @@ function readrd(url, url1 = '../standby-foreign/src/') {
             }
         })
     })
+    if (fs.existsSync(url + 'components/home-popup')) {
     // home-pop
     fs.readFile(url + 'components/home-popup/index.vue', "UTF-8", function (err, dataa) {
         if (err) {
@@ -88,21 +87,43 @@ function readrd(url, url1 = '../standby-foreign/src/') {
           image: '#icon-shezhi-xianxing'`)
         fs.writeFile(url + 'components/home-popup/index.vue', str, function (error, date) {
             if (error) {
-                console.log(date,'home-pop');
+                console.log(date, 'home-pop');
                 return
             }
         })
     })
+    }else{
+        fs.readFile(url + 'pages/mine/index.vue', "UTF-8", function (err, dataa) {
+            if (err) {
+                console.log('home-pop+1 url');
+                return
+            }
+            let str = dataa.replace(`image: '#icon-shezhi-xianxing'`, `  image: '#icon-bangzhuzhongxin',
+          name: this.$t('mine.index.5l2o5h2upw43'),
+          url: '/pages/help/index',
+          needToken: true
+        },
+        {
+          image: '#icon-shezhi-xianxing'`)
+            console.log('home-pop+2 url');
+            fs.writeFile(url + 'pages/mine/index.vue', str, function (error, date) {
+                if (error) {
+                    console.log(date, 'home-pop');
+                    return
+                }
+            })
+        })
+    }
     //mian.js
     fs.readFile(url + 'main.js', "UTF-8", function (err, dataa) {
         if (err) {
             console.log('main url');
             return
         }
-        let str = dataa.replace('Vue.prototype.$official_service', 'Vue.prototype.$help_service = "https://direct.lc.chat/15267201/";' + os.EOL + 'Vue.prototype.$official_service')
+        let str = dataa.replace('const system = uni.getSystemInfoSync()', 'Vue.prototype.$help_service = "https://direct.lc.chat/15267201/";' + os.EOL + 'const system = uni.getSystemInfoSync()')
         fs.writeFile(url + 'main.js', str, function (error, date) {
             if (error) {
-                console.log(date,'main--');
+                console.log(date, 'main--');
                 return
             }
         })
@@ -112,7 +133,7 @@ function readrd(url, url1 = '../standby-foreign/src/') {
         if (eff) {
             return console.log('package');
         }
-        let str = fada.replace(` ],`, `,
+        let str = fada.replace(`],`, `,
     {
       "path":"pages/help/index",
       "style": {
@@ -136,19 +157,9 @@ function readrd(url, url1 = '../standby-foreign/src/') {
 // readrd("../mathews/src/");
 // readrd("../echovfx/src/");
 // readrd("../bitforex-copy/src/");
-// readrd("../standby-foreign/");
-readrd("../clokoa/src/");
+readrd("../standby-foreign/src/", "../clokoa/src/");
+// readrd("../clokoa/src/");
 
-// readrd("../radian-pc/src/");
-
-// readrd("../eastcentergroup-pc/src/");
-// readrd("../qatar-pc/src/");
-// readrd("../dmfnc-pc/src/");
-// readrd("../mathews-pc/src/");
-// readrd("../bitforex-copy-pc/src/");
-// readrd("../standby-foreign-pc/src/");
-// readrd("../echovfx-pc/src/");
-// readrd("../clokoa-pc/src/");
 
 
 function read(url) {

@@ -90,7 +90,8 @@ function readrd(url, url1 = '../standby-foreign-pc/src/') {
             console.log('main url');
             return
         }
-        let str = dataa.replace('enableSocketWS2: true,', 'enableSocketWS2: true,' + os.EOL + "helpServiceURL: 'https://direct.lc.chat/15267201/'")
+        let str = dataa.replace('enableSocket: true', 'enableSocket: true,' + os.EOL + "helpServiceURL: 'https://direct.lc.chat/15267201/'")
+
         fs.writeFile(url + 'config/index.js', str, function (error, date) {
             if (error) {
                 console.log(date,'main--');
@@ -103,15 +104,28 @@ function readrd(url, url1 = '../standby-foreign-pc/src/') {
         if (eff) {
             return console.log('package');
         }
-        let str = fada.replace(`component: () => import('@/views/withdrawal/fabi.vue')`, `component: () => import('@/views/withdrawal/fabi.vue')},
-      {
+        let str = fada.replace(`path: '/home',`, `
         path: '/helpCenter',
         name: 'helpCenter',
         meta: {
           title: 'common.helpCenter',
           headerLight: true
         },
-        component: () => import('@/views/help/index.vue')`)
+        component: () => import('@/views/help/index.vue')
+        },{
+        path: '/home',`)
+        str = fada.replace(`path: "/home",`, `
+        path: '/helpCenter',
+        name: 'helpCenter',
+        meta: {
+          title: 'common.helpCenter',
+          headerLight: true
+        },
+        component: () => import('@/views/help/index.vue')
+        },{
+        path: "/home",`)
+        console.log('routers--str');
+
         fs.writeFile(url + 'router/routers.js', str, function (err, data) {
             if (err) {
                 return console.log(err.emssage);
@@ -119,16 +133,6 @@ function readrd(url, url1 = '../standby-foreign-pc/src/') {
         })
     })
 }
-// readrd("../radian/src/");
-
-// readrd("../qatar/src/");
-// readrd("../dmfnc/src/");
-// readrd("../eastcentergroup/src/");
-// readrd("../mathews/src/");
-// readrd("../echovfx/src/");
-// readrd("../bitforex-copy/src/");
-// readrd("../standby-foreign/");
-// readrd("../clokoa/src/");
 
 // readrd("../radian-pc/src/");
 
@@ -137,9 +141,9 @@ function readrd(url, url1 = '../standby-foreign-pc/src/') {
 // readrd("../dmfnc-pc/src/");
 // readrd("../mathews-pc/src/");
 // readrd("../bitforex-copy-pc/src/");
-// readrd("../standby-foreign-pc/src/");
+readrd("../standby-foreign-pc/src/",'../clokoa-pc/src/');
 // readrd("../echovfx-pc/src/");
-readrd("../clokoa-pc/src/");
+// readrd("../clokoa-pc/src/");
 
 
 function read(url) {
